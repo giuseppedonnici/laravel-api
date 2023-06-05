@@ -19,9 +19,9 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->slug }}</td>
                     <td>
-                        {{-- <a href="{{ route('admin.posts.show', $project->slug) }}" class="btn btn-success">
+                        <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">
                             <i class="fa-solid fa-eye"></i>
-                        </a> --}}
+                        </a>
                     </td>
                 </tr>
             @endforeach
