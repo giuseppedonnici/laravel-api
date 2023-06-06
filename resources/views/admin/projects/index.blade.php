@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
+    @include('partials.session_message')
     
     <h1>Lista dei progetti</h1>
 
