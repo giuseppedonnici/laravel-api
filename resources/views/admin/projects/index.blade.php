@@ -11,7 +11,7 @@
     <h1>Lista dei progetti</h1>
 
     <div class="my-2 text-end">
-        <a href="{{ route('admin.projects.create') }}">Add new Project</a>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-success">Nuovo progetto</a>
     </div>
 
     <table class="table">
