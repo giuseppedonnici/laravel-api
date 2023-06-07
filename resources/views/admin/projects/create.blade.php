@@ -15,9 +15,9 @@
         <div class="mb-3">
             <label for="type">Tipologia</label>
             <select class="form-select" id="type" name="type_id">
-                <option selected value=""></option>
+                <option value=""></option>
                 @foreach ($types as $type)
-                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                <option @selected(old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
             </select>
         </div>
