@@ -22,6 +22,19 @@
             </select>
         </div>
 
+        <div>
+            <h5>Seleziona le Tecnologie</h5>
+            @foreach ($technologies as $technology)
+            <div class="form-check">
+                <input class="form-check-input" name="technologies[]" type="checkbox" value="{{ $technology->id }}" id="tag-{{ $technology->id }}">
+                <label class="form-check-label" for="tag-{{ $technology->id }}">
+                  {{ $technology->name }}
+                </label>
+            </div>
+                
+            @endforeach
+        </div>
+
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control" id="description" rows="3" name="description">{{ old('description') }}</textarea>
