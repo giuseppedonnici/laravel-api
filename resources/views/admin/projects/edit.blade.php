@@ -27,7 +27,9 @@
             <h5>Tecnologie</h5>
             @foreach ($technologies as $technology)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" id="tag-{{ $technology->id }}" @checked($project->technologies->contains($technology->id))>
+                  {{-- Al primo caricamento della pagina devo selezionare i checkbox che sono salvati nel DB, quindi ho una collection. Se c'è un errore al submit del bottone devo selezionare i checkbox selezionati dall'utente nella pagina precedente, quindi ho un array preso da old --}}
+                    <input class="form-check-input" type="checkbox" name="technologies[]" value="{{ $technology->id }}" id="tag-{{ $technology->id }}" 
+                    @checked(old('technologies') ? in_array($technology->id, old('technologies', [])) : $project->technologies->contains($technology->id))>
                     <label class="form-check-label" for="tag-{{ $technology->id }}">
                         {{ $technology->name }}
                     </label>
