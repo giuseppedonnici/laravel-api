@@ -44,12 +44,20 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        // Creazione del progetto
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         // $project = new Project();
         // $project->fill($data);
         // $project->save();
         $project = Project::create($data);
+
+        // Salvataggio dei dati nella tabella ponte
+        if($request->has('technologies')) {
+            // Inserimento nella tabella ponte
+            $project->technologies()->attach($request->technologies);
+        }
+
         return redirect()->route('admin.projects.index')->with('message', "{$project->title} è stato creato");
 
     }
