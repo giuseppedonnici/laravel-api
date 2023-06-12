@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -50,6 +51,14 @@ class ProjectController extends Controller
         // $project = new Project();
         // $project->fill($data);
         // $project->save();
+
+        // Salvataggio del file 
+        if($request->hasFile('image')) {
+            $path = Storage::disk('public')->put('post_images', $request->image);
+            $data['image'] = $path;
+        }
+
+        // Salvataggio del progetto den database
         $project = Project::create($data);
 
         // Salvataggio dei dati nella tabella ponte
