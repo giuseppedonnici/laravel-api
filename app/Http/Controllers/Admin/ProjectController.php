@@ -107,6 +107,15 @@ class ProjectController extends Controller
         // Aggiornamento dei dati del progetto
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
+
+        if($request->hasFile('image')) {
+            if($project->image) {
+                Storage::delete($project->image);
+            }
+            $path = Storage::disk('public')->put('post_images', $request->image);
+            $data['image'] = $path;
+        }
+
         $project->update($data);
 
         // Aggiornamento del collegamento con le tecnologie
@@ -127,6 +136,9 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->technologies()->detach();
+        if($project->image) {
+            Storage::delete($project->image);
+        }
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', "{$project->title} è stato cancellato");
     }
